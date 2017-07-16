@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jsft.mapper.DraftMapper">
+  <resultMap id="BaseResultMap" type="jsft.model.Draft">
+    <id column="contractId" jdbcType="CHAR" property="contractid" />
+    <result column="bank" jdbcType="CHAR" property="bank" />
+    <result column="certificate" jdbcType="CHAR" property="certificate" />
+    <result column="currency" jdbcType="CHAR" property="currency" />
+    <result column="draftAmount" jdbcType="DOUBLE" property="draftamount" />
+    <result column="draftRate" jdbcType="DOUBLE" property="draftrate" />
+    <result column="draftDeadline" jdbcType="INTEGER" property="draftdeadline" />
+    <result column="rmb" jdbcType="DOUBLE" property="rmb" />
+    <result column="loanDate" jdbcType="CHAR" property="loandate" />
+    <result column="refundDate" jdbcType="CHAR" property="refunddate" />
+    <result column="lockAmount" jdbcType="DOUBLE" property="lockamount" />
+    <result column="lockRate" jdbcType="DOUBLE" property="lockrate" />
+    <result column="businessDeptApply" jdbcType="CHAR" property="businessdeptapply" />
+    <result column="financialDeptApply" jdbcType="CHAR" property="financialdeptapply" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    contractId, bank, certificate, currency, draftAmount, draftRate, draftDeadline, rmb, 
+    loanDate, refundDate, lockAmount, lockRate, businessDeptApply, financialDeptApply
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from draft
+    where contractId = #{contractid,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from draft
+    where contractId = #{contractid,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="jsft.model.Draft">
+    insert into draft (contractId, bank, certificate, 
+      currency, draftAmount, draftRate, 
+      draftDeadline, rmb, loanDate, 
+      refundDate, lockAmount, lockRate, 
+      businessDeptApply, financialDeptApply)
+    values (#{contractid,jdbcType=CHAR}, #{bank,jdbcType=CHAR}, #{certificate,jdbcType=CHAR}, 
+      #{currency,jdbcType=CHAR}, #{draftamount,jdbcType=DOUBLE}, #{draftrate,jdbcType=DOUBLE}, 
+      #{draftdeadline,jdbcType=INTEGER}, #{rmb,jdbcType=DOUBLE}, #{loandate,jdbcType=CHAR}, 
+      #{refunddate,jdbcType=CHAR}, #{lockamount,jdbcType=DOUBLE}, #{lockrate,jdbcType=DOUBLE}, 
+      #{businessdeptapply,jdbcType=CHAR}, #{financialdeptapply,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="jsft.model.Draft">
+    insert into draft
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="contractid != null">
+        contractId,
+      </if>
+      <if test="bank != null">
+        bank,
+      </if>
+      <if test="certificate != null">
+        certificate,
+      </if>
+      <if test="currency != null">
+        currency,
+      </if>
+      <if test="draftamount != null">
+        draftAmount,
+      </if>
+      <if test="draftrate != null">
+        draftRate,
+      </if>
+      <if test="draftdeadline != null">
+        draftDeadline,
+      </if>
+      <if test="rmb != null">
+        rmb,
+      </if>
+      <if test="loandate != null">
+        loanDate,
+      </if>
+      <if test="refunddate != null">
+        refundDate,
+      </if>
+      <if test="lockamount != null">
+        lockAmount,
+      </if>
+      <if test="lockrate != null">
+        lockRate,
+      </if>
+      <if test="businessdeptapply != null">
+        businessDeptApply,
+      </if>
+      <if test="financialdeptapply != null">
+        financialDeptApply,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="contractid != null">
+        #{contractid,jdbcType=CHAR},
+      </if>
+      <if test="bank != null">
+        #{bank,jdbcType=CHAR},
+      </if>
+      <if test="certificate != null">
+        #{certificate,jdbcType=CHAR},
+      </if>
+      <if test="currency != null">
+        #{currency,jdbcType=CHAR},
+      </if>
+      <if test="draftamount != null">
+        #{draftamount,jdbcType=DOUBLE},
+      </if>
+      <if test="draftrate != null">
+        #{draftrate,jdbcType=DOUBLE},
+      </if>
+      <if test="draftdeadline != null">
+        #{draftdeadline,jdbcType=INTEGER},
+      </if>
+      <if test="rmb != null">
+        #{rmb,jdbcType=DOUBLE},
+      </if>
+      <if test="loandate != null">
+        #{loandate,jdbcType=CHAR},
+      </if>
+      <if test="refunddate != null">
+        #{refunddate,jdbcType=CHAR},
+      </if>
+      <if test="lockamount != null">
+        #{lockamount,jdbcType=DOUBLE},
+      </if>
+      <if test="lockrate != null">
+        #{lockrate,jdbcType=DOUBLE},
+      </if>
+      <if test="businessdeptapply != null">
+        #{businessdeptapply,jdbcType=CHAR},
+      </if>
+      <if test="financialdeptapply != null">
+        #{financialdeptapply,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="jsft.model.Draft">
+    update draft
+    <set>
+      <if test="bank != null">
+        bank = #{bank,jdbcType=CHAR},
+      </if>
+      <if test="certificate != null">
+        certificate = #{certificate,jdbcType=CHAR},
+      </if>
+      <if test="currency != null">
+        currency = #{currency,jdbcType=CHAR},
+      </if>
+      <if test="draftamount != null">
+        draftAmount = #{draftamount,jdbcType=DOUBLE},
+      </if>
+      <if test="draftrate != null">
+        draftRate = #{draftrate,jdbcType=DOUBLE},
+      </if>
+      <if test="draftdeadline != null">
+        draftDeadline = #{draftdeadline,jdbcType=INTEGER},
+      </if>
+      <if test="rmb != null">
+        rmb = #{rmb,jdbcType=DOUBLE},
+      </if>
+      <if test="loandate != null">
+        loanDate = #{loandate,jdbcType=CHAR},
+      </if>
+      <if test="refunddate != null">
+        refundDate = #{refunddate,jdbcType=CHAR},
+      </if>
+      <if test="lockamount != null">
+        lockAmount = #{lockamount,jdbcType=DOUBLE},
+      </if>
+      <if test="lockrate != null">
+        lockRate = #{lockrate,jdbcType=DOUBLE},
+      </if>
+      <if test="businessdeptapply != null">
+        businessDeptApply = #{businessdeptapply,jdbcType=CHAR},
+      </if>
+      <if test="financialdeptapply != null">
+        financialDeptApply = #{financialdeptapply,jdbcType=CHAR},
+      </if>
+    </set>
+    where contractId = #{contractid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="jsft.model.Draft">
+    update draft
+    set bank = #{bank,jdbcType=CHAR},
+      certificate = #{certificate,jdbcType=CHAR},
+      currency = #{currency,jdbcType=CHAR},
+      draftAmount = #{draftamount,jdbcType=DOUBLE},
+      draftRate = #{draftrate,jdbcType=DOUBLE},
+      draftDeadline = #{draftdeadline,jdbcType=INTEGER},
+      rmb = #{rmb,jdbcType=DOUBLE},
+      loanDate = #{loandate,jdbcType=CHAR},
+      refundDate = #{refunddate,jdbcType=CHAR},
+      lockAmount = #{lockamount,jdbcType=DOUBLE},
+      lockRate = #{lockrate,jdbcType=DOUBLE},
+      businessDeptApply = #{businessdeptapply,jdbcType=CHAR},
+      financialDeptApply = #{financialdeptapply,jdbcType=CHAR}
+    where contractId = #{contractid,jdbcType=CHAR}
+  </update>
+</mapper>

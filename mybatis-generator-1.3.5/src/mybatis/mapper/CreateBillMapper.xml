@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.mapper.CreateBillMapper">
+  <resultMap id="BaseResultMap" type="mybatis.model.CreateBill">
+    <id column="contractId" jdbcType="CHAR" property="contractid" />
+    <result column="bank" jdbcType="CHAR" property="bank" />
+    <result column="dept" jdbcType="CHAR" property="dept" />
+    <result column="goods" jdbcType="CHAR" property="goods" />
+    <result column="attribute" jdbcType="CHAR" property="attribute" />
+    <result column="proxyClient" jdbcType="CHAR" property="proxyclient" />
+    <result column="currency" jdbcType="CHAR" property="currency" />
+    <result column="crtAmount" jdbcType="DOUBLE" property="crtamount" />
+    <result column="crtDate" jdbcType="CHAR" property="crtdate" />
+    <result column="crtDeadline" jdbcType="INTEGER" property="crtdeadline" />
+    <result column="state" jdbcType="CHAR" property="state" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    contractId, bank, dept, goods, attribute, proxyClient, currency, crtAmount, crtDate, 
+    crtDeadline, state
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from create
+    where contractId = #{contractid,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from create
+    where contractId = #{contractid,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="mybatis.model.CreateBill">
+    insert into create (contractId, bank, dept, 
+      goods, attribute, proxyClient, 
+      currency, crtAmount, crtDate, 
+      crtDeadline, state)
+    values (#{contractid,jdbcType=CHAR}, #{bank,jdbcType=CHAR}, #{dept,jdbcType=CHAR}, 
+      #{goods,jdbcType=CHAR}, #{attribute,jdbcType=CHAR}, #{proxyclient,jdbcType=CHAR}, 
+      #{currency,jdbcType=CHAR}, #{crtamount,jdbcType=DOUBLE}, #{crtdate,jdbcType=CHAR}, 
+      #{crtdeadline,jdbcType=INTEGER}, #{state,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="mybatis.model.CreateBill">
+    insert into create
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="contractid != null">
+        contractId,
+      </if>
+      <if test="bank != null">
+        bank,
+      </if>
+      <if test="dept != null">
+        dept,
+      </if>
+      <if test="goods != null">
+        goods,
+      </if>
+      <if test="attribute != null">
+        attribute,
+      </if>
+      <if test="proxyclient != null">
+        proxyClient,
+      </if>
+      <if test="currency != null">
+        currency,
+      </if>
+      <if test="crtamount != null">
+        crtAmount,
+      </if>
+      <if test="crtdate != null">
+        crtDate,
+      </if>
+      <if test="crtdeadline != null">
+        crtDeadline,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="contractid != null">
+        #{contractid,jdbcType=CHAR},
+      </if>
+      <if test="bank != null">
+        #{bank,jdbcType=CHAR},
+      </if>
+      <if test="dept != null">
+        #{dept,jdbcType=CHAR},
+      </if>
+      <if test="goods != null">
+        #{goods,jdbcType=CHAR},
+      </if>
+      <if test="attribute != null">
+        #{attribute,jdbcType=CHAR},
+      </if>
+      <if test="proxyclient != null">
+        #{proxyclient,jdbcType=CHAR},
+      </if>
+      <if test="currency != null">
+        #{currency,jdbcType=CHAR},
+      </if>
+      <if test="crtamount != null">
+        #{crtamount,jdbcType=DOUBLE},
+      </if>
+      <if test="crtdate != null">
+        #{crtdate,jdbcType=CHAR},
+      </if>
+      <if test="crtdeadline != null">
+        #{crtdeadline,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="mybatis.model.CreateBill">
+    update create
+    <set>
+      <if test="bank != null">
+        bank = #{bank,jdbcType=CHAR},
+      </if>
+      <if test="dept != null">
+        dept = #{dept,jdbcType=CHAR},
+      </if>
+      <if test="goods != null">
+        goods = #{goods,jdbcType=CHAR},
+      </if>
+      <if test="attribute != null">
+        attribute = #{attribute,jdbcType=CHAR},
+      </if>
+      <if test="proxyclient != null">
+        proxyClient = #{proxyclient,jdbcType=CHAR},
+      </if>
+      <if test="currency != null">
+        currency = #{currency,jdbcType=CHAR},
+      </if>
+      <if test="crtamount != null">
+        crtAmount = #{crtamount,jdbcType=DOUBLE},
+      </if>
+      <if test="crtdate != null">
+        crtDate = #{crtdate,jdbcType=CHAR},
+      </if>
+      <if test="crtdeadline != null">
+        crtDeadline = #{crtdeadline,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=CHAR},
+      </if>
+    </set>
+    where contractId = #{contractid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="mybatis.model.CreateBill">
+    update create
+    set bank = #{bank,jdbcType=CHAR},
+      dept = #{dept,jdbcType=CHAR},
+      goods = #{goods,jdbcType=CHAR},
+      attribute = #{attribute,jdbcType=CHAR},
+      proxyClient = #{proxyclient,jdbcType=CHAR},
+      currency = #{currency,jdbcType=CHAR},
+      crtAmount = #{crtamount,jdbcType=DOUBLE},
+      crtDate = #{crtdate,jdbcType=CHAR},
+      crtDeadline = #{crtdeadline,jdbcType=INTEGER},
+      state = #{state,jdbcType=CHAR}
+    where contractId = #{contractid,jdbcType=CHAR}
+  </update>
+</mapper>
